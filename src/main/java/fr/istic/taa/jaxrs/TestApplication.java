@@ -24,6 +24,7 @@ import javax.ws.rs.core.Application;
 import fr.istic.taa.jaxrs.rest.FicheResource;
 import fr.istic.taa.jaxrs.rest.KanbanBoardResource;
 import fr.istic.taa.jaxrs.rest.SectionResource;
+import fr.istic.taa.jaxrs.rest.SwaggerResource;
 import fr.istic.taa.jaxrs.rest.UtilisateurResource;
 import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 
@@ -40,6 +41,7 @@ public class TestApplication extends Application {
         clazzes.add(UtilisateurResource.class);
         clazzes.add(SectionResource.class);
         clazzes.add(KanbanBoardResource.class);
+	clazzes.add(SwaggerResource.class);
 
         return clazzes;
     }
