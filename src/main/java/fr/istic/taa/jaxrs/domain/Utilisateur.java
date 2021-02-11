@@ -50,8 +50,7 @@ public class Utilisateur implements Serializable{
     }
     
     @OneToMany(mappedBy = "utilisateur")
-    @XmlElementWrapper(name = "fiches")
-    @XmlElement(name = "fiches")
+    @XmlTransient
     public List<Fiche> getFiches() {
         return fiches;
     }
@@ -60,8 +59,7 @@ public class Utilisateur implements Serializable{
     }
     
     @ManyToMany
-    @XmlElementWrapper(name = "kanbanBoards")
-    @XmlElement(name = "kanbanBoards")
+    @XmlTransient
     public List<KanbanBoard> getKanbanBoards() {
         return kanbanBoards;
     }

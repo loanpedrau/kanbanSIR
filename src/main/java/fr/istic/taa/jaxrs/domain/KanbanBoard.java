@@ -8,8 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
+@XmlRootElement(name = "KanbanBoard")
 public class KanbanBoard implements Serializable{
 
     long id;
@@ -19,6 +23,7 @@ public class KanbanBoard implements Serializable{
     
     @Id
     @GeneratedValue
+    @XmlElement(name = "id")
     long getId() {
 	return id;
     }
@@ -27,6 +32,7 @@ public class KanbanBoard implements Serializable{
 	this.id = id;
     }
 
+    @XmlElement(name = "name")
     public String getName() {
         return name;
     }
@@ -36,6 +42,7 @@ public class KanbanBoard implements Serializable{
     }
 
     @OneToMany(mappedBy="kanbanBoard")
+    @XmlTransient
     public List<Section> getSections() {
         return sections;
     }
@@ -45,6 +52,7 @@ public class KanbanBoard implements Serializable{
     }
 
     @ManyToMany(mappedBy="kanbanBoards")
+    @XmlTransient
     public List<Utilisateur> getUsers() {
         return users;
     }
