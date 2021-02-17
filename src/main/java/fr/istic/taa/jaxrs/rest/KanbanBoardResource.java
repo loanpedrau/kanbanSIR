@@ -16,7 +16,7 @@ import fr.istic.taa.jaxrs.domain.KanbanBoard;
 import fr.istic.taa.jaxrs.domain.Utilisateur;
 import io.swagger.v3.oas.annotations.Parameter;
 
-@Path("/kaban")
+@Path("/kanban")
 @Produces({"application/json", "application/xml"})
 public class KanbanBoardResource {
 
@@ -31,7 +31,6 @@ public class KanbanBoardResource {
     @Consumes("application/json")
     public Response addKanban(
 	    @Parameter(description = "Kanban object that needs to be added to the store", required = true) KanbanBoard kanban) {
-	// add fiche
 	KanbanDao dao = new KanbanDao();
 	dao.save(kanban);
 	return Response.ok().entity("SUCCESS").build();
