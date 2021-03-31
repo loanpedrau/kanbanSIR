@@ -26,7 +26,7 @@ public class SectionResource {
     @POST
     @Consumes("application/json")
     public Response addSection(
-	    @Parameter(description = "Kanban object that needs to be added to the store", required = true) Section section) {
+	    @Parameter(description = "Section object that needs to be added to the store", required = true) Section section) {
 	// add section
 	SectionDao dao = new SectionDao();
 	dao.save(section);

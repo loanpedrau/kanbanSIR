@@ -22,8 +22,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="role", discriminatorType=DiscriminatorType.STRING)
 @NamedQueries(
-	{@NamedQuery(name="touslesutilisateurs", query="select u from Utilisateur u"),
-	@NamedQuery(name="touslesutilisateursParNom", query="select u from Utilisateur u where u.name=:name")})
+	{@NamedQuery(name="allUsers", query="select u from Utilisateur u"),
+	@NamedQuery(name="allUsersByName", query="select u from Utilisateur u where u.name=:name"),
+	@NamedQuery(name="allUsersByEmail", query="select u from Utilisateur u where u.email=:email")})
 @XmlRootElement(name = "Utilisateur")
 public class Utilisateur implements Serializable{
 

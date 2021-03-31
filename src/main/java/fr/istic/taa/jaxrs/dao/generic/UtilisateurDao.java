@@ -12,14 +12,23 @@ public class UtilisateurDao extends AbstractJpaDao<String, Utilisateur> {
     }
     
     public List<Utilisateur> getAllUsers(){
-	List<Utilisateur> utilisateurs = entityManager.createNamedQuery("touslesutilisateurs", Utilisateur.class)
+	return entityManager.createNamedQuery("allUsers", Utilisateur.class).getResultList();
+    }
+    
+    public List<Utilisateur> getAllUsersByName(String name){
+	List<Utilisateur> utilisateurs = entityManager.createNamedQuery("allUsersByName", Utilisateur.class)
+		.setParameter("name", name)
 		.getResultList();
 	return utilisateurs;
     }
     
-    public List<Utilisateur> getAllAdmin(){
-	List<Utilisateur> admins = entityManager.createQuery("select u from Utilisateur u where u.role:'Admin'")
+    public List<Utilisateur> getAllUsersByEmail(String email){
+	return entityManager.createNamedQuery("allUsersByEmail", Utilisateur.class)
+		.setParameter("email", email)
 		.getResultList();
-	return admins;
+    }
+    
+    public List<Utilisateur> getAllAdmin(){
+	return entityManager.createQuery("select a from Admin a").getResultList();
     }
 }

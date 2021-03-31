@@ -7,11 +7,11 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
-import fr.istic.taa.jaxrs.dao.generic.FicheDao;
 import fr.istic.taa.jaxrs.dao.generic.UtilisateurDao;
-import fr.istic.taa.jaxrs.domain.Fiche;
+import fr.istic.taa.jaxrs.domain.Admin;
 import fr.istic.taa.jaxrs.domain.Utilisateur;
 import io.swagger.v3.oas.annotations.Parameter;
 
@@ -27,7 +27,21 @@ public class UtilisateurResource {
     }
     
     @GET
-    @Path("/admins")
+    @Path("/name")
+    public List<Utilisateur> getAllUsersByName(@QueryParam("name") String name)  {
+	UtilisateurDao dao = new UtilisateurDao();
+	return dao.getAllUsersByName(name);
+    }
+    
+    @GET
+    @Path("/email")
+    public List<Utilisateur> getAllUsersByEmail(@QueryParam("email") String email)  {
+	UtilisateurDao dao = new UtilisateurDao();
+	return dao.getAllUsersByEmail(email);
+    }
+    
+    @GET
+    @Path("/admin")
     public List<Utilisateur> getAllAdmin()  {
 	UtilisateurDao dao = new UtilisateurDao();
 	return dao.getAllAdmin();
@@ -36,10 +50,19 @@ public class UtilisateurResource {
     @POST
     @Consumes("application/json")
     public Response addUtilisateur(
-	    @Parameter(description = "Utilisateur object that needs to be added to the store", required = true) Utilisateur user) {
-	// add fiche
+	    @Parameter(description = "User object that needs to be added to the store", required = true) Utilisateur user) {
 	UtilisateurDao dao = new UtilisateurDao();
 	dao.save(user);
+	return Response.ok().entity("SUCCESS").build();
+    }
+    
+    @POST
+    @Path("/admin")
+    @Consumes("application/json")
+    public Response addAdmin(
+	    @Parameter(description = "Admin object that needs to be added to the store", required = true) Admin admin) {
+	UtilisateurDao dao = new UtilisateurDao();
+	dao.save(admin);
 	return Response.ok().entity("SUCCESS").build();
     }
 }
