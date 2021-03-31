@@ -3,8 +3,10 @@ package fr.istic.taa.jaxrs.rest;
 
 import java.util.List;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -24,6 +26,22 @@ public class UtilisateurResource {
     public List<Utilisateur> getAllUsers()  {
 	UtilisateurDao dao = new UtilisateurDao();
 	return dao.findAll();
+    }
+    
+    @DELETE
+    public Response deleteUser(@QueryParam("email") String email)  {
+	UtilisateurDao dao = new UtilisateurDao();
+	dao.delete(dao.findByEmail(email));
+	return Response.ok().entity("SUCCESS").build();
+    }
+    
+    @PUT
+    @Consumes("application/json")
+    public Response modifyUser(
+	    @Parameter(description = "User object that needs to be modify (email cannot be modify)", required = true) Utilisateur user)  {
+	UtilisateurDao dao = new UtilisateurDao();
+	dao.update(user);
+	return Response.ok().entity("SUCCESS").build();
     }
     
     @GET

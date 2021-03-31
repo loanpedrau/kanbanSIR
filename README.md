@@ -47,10 +47,11 @@ Divers type de requêtes ont étés mises en place :
 + requêtes simples (ex : /users/all , /kanban/all , etc... )
 + requêtes avec l'héritage (ex : /users/admins, qui va récupérer tous les Admins (sous-type de Utilisateur) )
 
-Au niveau des DAO ceux ou il y a eu l'ajout de méthodes personnalisés :
+Au niveau des DAO, ceux ou il y a eu l'ajout de méthodes personnalisés :
 FicheDAO et UtilisateurDAO
 
 Mise en place de l'héritage : Admin hérite d'Utilisateur
 
 Pour chaque ressource possibilité via l'api de faire un GET (ALL) pour tous les récupérer et un POST pour en ajouter un.
++ possibilité de modifier et supprimer un utilisateur.
 

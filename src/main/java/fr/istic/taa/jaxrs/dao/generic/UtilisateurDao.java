@@ -11,6 +11,10 @@ public class UtilisateurDao extends AbstractJpaDao<String, Utilisateur> {
 	super(Utilisateur.class);
     }
     
+    public Utilisateur findByEmail(String email) {
+	return (Utilisateur) entityManager.createQuery("select u from Utilisateur u where u.email=:email").setParameter("email", email).getSingleResult();
+    }
+    
     public List<Utilisateur> getAllUsers(){
 	return entityManager.createNamedQuery("allUsers", Utilisateur.class).getResultList();
     }
